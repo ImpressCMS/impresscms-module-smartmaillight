@@ -1,0 +1,67 @@
+<{includeq file='db:smartmaillight_header.html'}>
+
+<h2><{$smarty.const._MD_SMLIGHT_ECARD_PREVIEW}></h2>
+<div><{$smarty.const._MD_SMLIGHT_ECARD_PREVIEW_INFO}></div>
+<br />
+
+<style>
+#smartmaillight_template_layer {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#smartmaillight_template_message {
+	border: 1px solid #000;
+}
+#smartmaillight_template_ecard {
+	border: 1px solid #000;
+}
+</style>
+
+<div id="smartmaillight_template_layer">
+
+	<h1><{$smarty.const._MD_SMLIGHT_ECARD_MESSAGE}></h1>
+	<div><{$smarty.const._MD_SMLIGHT_ECARD_MESSAGE_INFO}></div>	
+	<div id="smartmaillight_template_message">
+		<div><{$smartmaillight_ecard_message}></div>
+	</div>
+	<br />
+	<h1><{$smarty.const._MD_SMLIGHT_ECARD_CONTENT}></h1>
+	<div><{$smarty.const._MD_SMLIGHT_ECARD_CONTENT_INFO}></div>
+	<div id="smartmaillight_template_message">
+		<div><{$smartmaillight_ecard_content}></div>
+	</div>
+	
+	<br />
+	<h1><{$smarty.const._MD_SMLIGHT_ECARD_RECIPIENT_LIST}></h1>
+	<div><{$smarty.const._MD_SMLIGHT_ECARD_RECIPIENT_LIST_INFO}></div>
+	<ul>
+	<{foreach item=smartmaillight_ecard_recipient from=$smartmaillight_ecard_recipients}>
+		<li><{$smartmaillight_ecard_recipient}></li>
+	<{/foreach}>
+	</ul>	
+	
+	<form name="smartmaillight_sendecard_form" action="sendecard.php" method="post" enctype="multipart/form-data">
+	<input name="step" value="4" type="hidden">
+	<textarea name="disclaimer" id="disclaimer" rows="8" cols="39" readonly="readonly"><{$smarty.const._MD_SMLIGHT_ECARD_DISCLAIMER}></textarea>
+	
+	<div><input name="agree_disc" value="1" type="checkbox" onfocus="document.getElementById('smartmaillight_sendecard_button').disabled=false"><{$smarty.const._MD_SMLIGHT_ECARD_I_AGREE}></div>
+	
+	<{foreach from=$smartmaillight_ecard_vars key=key item=value}>
+		<input name="<{$key}>" value="<{$value}>" type="hidden">
+	<{/foreach}>
+
+	<div>
+		<input type='submit' class='formButton' name='smartmaillight_sendecard_button' id='smartmaillight_sendecard_button' value='<{$smarty.const._MD_SMLIGHT_SEND_ECARD}>' disabled='disabled'/>
+		<input type='submit' class='formButton' name='smartmaillight_sendecard_modify_button' id='smartmaillight_sendecard_modify_button' value='<{$smarty.const._MD_SMLIGHT_MODIFY_ECARD}>' onclick="this.form.elements.step.value='2'"/>
+	</div>
+	
+	</form>
+	
+</div>
+
+</form>
+
+
+<{includeq file='db:smartmaillight_footer.html'}>
+<{includeq file='db:system_notification_select.html'}>

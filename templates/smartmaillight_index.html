@@ -1,0 +1,20 @@
+<{includeq file='db:smartmaillight_header.html'}>
+
+<h2><{$smarty.const._MD_SMLIGHT_LISTS}></h2>
+<div><{$smarty.const._MD_SMLIGHT_LISTS_INFO}></div>
+<br />
+<form action="<{$smartmaillight_url}>index.php" method="post">
+<div class="smartmaillight_lists">
+<{foreach from=$smartmaillight_lists item=list}>
+	<input type="hidden" name="all_lists[]" value="<{$list.listid}>" />
+	<input name="smartmaillight_selected_lists[]" value="<{$list.listid}>" type="checkbox" <{if $smartmaillight_subscribedlists[$list.listid]}>checked="checked"<{/if}> /><{$list.title}><br />
+	<div class="smartmaillight_list_description"><{$list.description}></div>
+	
+<{/foreach}>
+<input type="hidden" name="op" value="" />
+<input class="formButton" name="smartmaillight_list_submit" id="smartmaillight_list_submit" value="<{$smarty.const._SUBMIT}>" type="submit" onclick="this.form.elements.op.value='smartmaillight_list_submit'">
+</div>
+</form>
+
+<{includeq file='db:smartmaillight_footer.html'}>
+<{includeq file='db:system_notification_select.html'}>

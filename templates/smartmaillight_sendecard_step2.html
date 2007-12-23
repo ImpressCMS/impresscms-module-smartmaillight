@@ -1,0 +1,24 @@
+<{includeq file='db:smartmaillight_header.html'}>
+
+<h2><{$smarty.const._MD_SMLIGHT_ECARD_ENTER_INFO}></h2>
+<div><{$smarty.const._MD_SMLIGHT_ECARD_ENTER_INFO_INFO}></div>
+<br />
+<{$smartmaillight_ecard_form.javascript}>
+<form name="<{$smartmaillight_ecard_form.name}>" action="<{$smartmaillight_ecard_form.action}>" method="<{$smartmaillight_ecard_form.method}>" <{$smartmaillight_ecard_form.extra}>>
+    <!-- start of smartmaillight_ecard_form elements loop -->
+    <{foreach item=element from=$smartmaillight_ecard_form.elements}>
+      <{if $element.hidden != true}>
+        <div><b><{$element.caption}></b></div>
+        <{if $element.description}>
+        	<div><{$element.description}></div>
+        <{/if}>
+        <div><{$element.body}></div>
+      <{else}>
+	      <{$element.body}>
+      <{/if}>
+    <{/foreach}>
+    <!-- end of smartmaillight_ecard_form elements loop -->
+</form>
+
+<{includeq file='db:smartmaillight_footer.html'}>
+<{includeq file='db:system_notification_select.html'}>

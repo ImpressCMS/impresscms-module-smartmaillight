@@ -1,0 +1,20 @@
+<{includeq file='db:smartmaillight_header.html'}>
+
+<h2><{$smarty.const._MD_SMLIGHT_CHOOSE_A_TEMPLATE}></h2>
+<div><{$smarty.const._MD_SMLIGHT_CHOOSE_A_TEMPLATE_INFO}></div>
+<br />
+<div class="smartmaillight_templates">
+
+<form name="smartmaillight_sendecard_form" action="sendecard.php" method="post" enctype="multipart/form-data">
+<input name="step" value="2" type="hidden">
+<input name="selected_templateid" value="0" type="hidden">
+<{foreach from=$smartmaillight_templates item=template}>
+	<div class="smartmaillight_template_name"><{$template.name}></div>
+	<input type='submit' class='formButton' name='select_template_<{$template.templateid}>' id='select_template_<{$template.templateid}>' value='<{$smarty.const._MD_SMLIGHT_SELECT_THIS_TEMPLATE}>' onclick="this.form.elements.selected_templateid.value='<{$template.templateid}>'" />
+<{/foreach}>
+
+</form>
+</div>
+
+<{includeq file='db:smartmaillight_footer.html'}>
+<{includeq file='db:system_notification_select.html'}>

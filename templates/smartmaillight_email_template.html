@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+	<title><{$email_title}></title>
+	<style type='text/css'>
+		img {border: 0px; margin: 0px;}
+		body {font-family: Arial, Helvetica, sans-serif; font-size: 12px;}
+	</style>
+</head>
+	<body>
+	<{if $ecard_notice}>
+		<div style="font-size: 10px; text-align: center"><{$ecard_notice}></div>
+	<{/if}>
+	<{$email_body}>
+	<{if $ecard_powered}>
+		<div style="padidng-top: 15px; font-size: 10px; text-align: center"><{$ecard_powered}></div>
+	<{/if}>
+	</body>
+</html>

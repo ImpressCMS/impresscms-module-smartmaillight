@@ -1,0 +1,24 @@
+/**
+* $Id: upgrade.txt,v 1.1 2007/09/23 20:41:03 marcan Exp $
+* Module: Class_Booking
+* Author: The SmartFactory <www.smartfactory.ca>
+* Licence: GNU
+*/
+
+How to uprade from SmartMailLight
+=================================
+
+In order to upgrade the module, you will need to :
+
+- Upload the complete /smartmaillight folder into the /modules directory of your website
+
+- Then, log in to your site as administrator, go to System Admin > Modules, look for the SmartMailLight icon in the list of installed modules and click in the update icon
+
+That's it !
+
+Enjoy !
+
+
+.:: The SmartFactory ::.
+.:: Open Source : smartfactory.ca ::.
+.:: Professionnal : inboxsolutions.net ::.

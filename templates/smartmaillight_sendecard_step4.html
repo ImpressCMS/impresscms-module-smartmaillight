@@ -1,0 +1,12 @@
+<{includeq file='db:smartmaillight_header.html'}>
+
+<h2><{$smarty.const._MD_SMLIGHT_TEMPLATES}></h2>
+<div><{$smarty.const._MD_SMLIGHT_TEMPLATES_INFO}></div>
+<br />
+<div class="smartmaillight_templates">
+<{foreach from=$smartmaillight_templates item=template}>
+	<div class="smartmaillight_template_name"><a href="<{$smartmaillight_url}>sendecard.php?templateid=<{$template.templateid}>"><{$template.name}></a></div>
+<{/foreach}>
+
+<{includeq file='db:smartmaillight_footer.html'}>
+<{includeq file='db:system_notification_select.html'}>

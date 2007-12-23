@@ -1,0 +1,17 @@
+<{includeq file='db:smartmaillight_header.html'}>
+
+<{if $smartmaillight_messages}>
+	<h2><{$smarty.const._MD_SMLIGHT_MESSAGES_HISTORY}></h2>
+	
+	<div><{$smartmaillight_messages}></div>
+<{/if}>
+
+<{if $smartmaillight_message}>
+	<small><{$smartmaillight_message.date}></small>
+	<h2><{$smartmaillight_message.subject}></h2>
+	
+	<div class="smartmaillight_message"><{$smartmaillight_message.compiled_message}></div>
+<{/if}>
+
+<{includeq file='db:smartmaillight_footer.html'}>
+<{includeq file='db:system_notification_select.html'}>
