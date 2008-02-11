@@ -40,6 +40,7 @@ define("_MI_SMLIGHT_ECARDDSC", "Enable eCards feature");
 
 define("_MI_SMLIGHT_SENDNOW", "Send now");
 
-
+define("_MI_SMLIGHT_ANON_SUBSCRIPT", "Allow anonymous users to subscribe newsletters");
+define("_MI_SMLIGHT_ANON_SUBSCRIPTDSC", "");
 
 ?>

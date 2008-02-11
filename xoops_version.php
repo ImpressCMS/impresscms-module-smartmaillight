@@ -173,6 +173,13 @@ $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = 1;
 $i++;
 
+$modversion['config'][$i]['name'] = 'anon_subscript';
+$modversion['config'][$i]['title'] = '_MI_SMLIGHT_ANON_SUBSCRIPT';
+$modversion['config'][$i]['description'] = '_MI_SMLIGHT_ANON_SUBSCRIPTDSC';
+$modversion['config'][$i]['formtype'] = 'yesno';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = 1;
+$i++;
 /*
 $i++;
 $modversion['config'][$i]['name'] = 'show_subcats';

@@ -1,9 +1,38 @@
 <{includeq file='db:smartmaillight_header.html'}>
+<{if !$is_user}>
+	<script language="JavaScript" >
+		function validateForm(f) {
+			var email = f.email.value;
+			var formValide = true;
+			var msgErr = "";
+		
+			if(email == '') {
+				formValide = false;
+				msgErr += "\t * <{$smarty.const._MD_SMLIGHT_MAIL_ERR}> \n";
+			}
+		
+			if(formValide == false) {
+				alert(msgErr);
+				return false;
+			}else {
+				return true;
+			}
+		}
+		
+		function display_view_butt(){
+			obj = document.getElementById('view_butt');
+			if (obj) {
+				obj.style.display = "";
+			}
+			return false;
+		}
+	</script>
+<{/if}>
 
 <h2><{$smarty.const._MD_SMLIGHT_LISTS}></h2>
 <div><{$smarty.const._MD_SMLIGHT_LISTS_INFO}></div>
 <br />
-<form action="<{$smartmaillight_url}>index.php" method="post">
+<form onsubmit="return validateForm(this);"  action="<{$smartmaillight_url}>index.php" method="post">
 <div class="smartmaillight_lists">
 <{foreach from=$smartmaillight_lists item=list}>
 	<input type="hidden" name="all_lists[]" value="<{$list.listid}>" />
@@ -11,8 +40,29 @@
 	<div class="smartmaillight_list_description"><{$list.description}></div>
 	
 <{/foreach}>
+<{if !$is_user}>
+	<div class='smartmaillight_email'>
+		<{$smarty.const._CO_SMLIGHT_USER_EMAIL}>&nbsp;
+		<input type="text" name="email" value="<{$email}>" onkeydown="javascript: display_view_butt();"/>
+	</div>
+<{/if}>
+
 <input type="hidden" name="op" value="" />
-<input class="formButton" name="smartmaillight_list_submit" id="smartmaillight_list_submit" value="<{$smarty.const._SUBMIT}>" type="submit" onclick="this.form.elements.op.value='smartmaillight_list_submit'">
+<{if $none_sel}>
+	<input class="formButton" name="smartmaillight_list_submit" id="smartmaillight_list_submit" value="<{$smarty.const._MD_SMLIGHT_SUBSCRIBE}>" type="submit" onclick="this.form.elements.op.value='smartmaillight_list_submit'">
+<{else}>
+	<input class="formButton" name="smartmaillight_list_submit" id="smartmaillight_list_submit" value="<{$smarty.const._MD_SMLIGHT_UPDATE}>" type="submit" onclick="this.form.elements.op.value='smartmaillight_list_submit'">
+<{/if}>
+<{if !$is_user}>
+	<{if $email == ''}>
+		<span id='view_butt' >
+	<{else}>
+		<span id='view_butt' style="display:none">
+	<{/if}>
+	<input class="formButton" name="smartmaillight_list_view" id="smartmaillight_list_view" value="<{$smarty.const._MD_SMLIGHT_VIEW}>" type="submit" onclick="this.form.elements.op.value='smartmaillight_list_view'">
+	</span>
+<{/if}>
+
 </div>
 </form>
 

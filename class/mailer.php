@@ -47,6 +47,7 @@ class SmartmaillightMailer {
 		$smartmaillight_message_handler = xoops_getModuleHandler('message', 'smartmaillight');
 		$smartmaillight_recipient_handler = xoops_getModuleHandler('recipient', 'smartmaillight');
 		$smartmaillight_ecard_handler = xoops_getModuleHandler('ecard', 'smartmaillight');
+		$smartmaillight_user_handler = xoops_getModuleHandler('user', 'smartmaillight');
 
 		// are there any New messages
 		$newMessagesObj = $smartmaillight_message_handler->getNewMessages();
@@ -90,6 +91,11 @@ class SmartmaillightMailer {
 			$uid = $recipientObj->getUserUid();
 			if ($uid) {
 				$uidArray[$uid] = $uid;
+			}else{
+				$smartmail_user = $smartmaillight_user_handler->get($recipientObj->getVar('userid', 'e'));
+				if(!$smartmail_user->isNew()){
+					$mailArray[$recipientObj->getVar('userid', 'e')] = $smartmail_user->getVar('email');
+				}
 			}
 			$messageid = $recipientObj->getVar('messageid', 'e');
 			if ($messageid) {
@@ -118,6 +124,7 @@ class SmartmaillightMailer {
 		// now loop another time in the recipientsObj array and actually get some mail sending done !
 		foreach ($recipentsObj as $recipientObj) {
 			$uid = $recipientObj->getUserUid();
+			$userid = $recipientObj->getVar('userid', 'e');
 			$messageid = $recipientObj->getVar('messageid', 'e');
 			$ecardid = $recipientObj->getVar('ecardid', 'e');
 
@@ -125,13 +132,19 @@ class SmartmaillightMailer {
 
 			if ($messageid) {
 				$messageObj =& $messagesObj[$messageid];
-				$toUser =& $usersObj[$uid];
-				$xoopsMailer->setToUsers($toUser);
+				if(isset($usersObj[$uid])){
+					$toUser =& $usersObj[$uid];
+					$xoopsMailer->setToUsers($toUser);
+					$this->addLog('sending message ' . $messageObj->getVar('subject') . ' ' . 'to ' . $toUser->getVar('email'));
+				}else{
+					$xoopsMailer->setToEmails($mailArray[$userid]);
+					$this->addLog('sending message ' . $messageObj->getVar('subject') . ' ' . 'to ' . $mailArray[$userid] );
+				}
 				$xoopsMailer->setFromEmail($messageObj->getFromEmail());
 				$xoopsMailer->setFromName($messageObj->getFromName());
 				$xoopsMailer->setSubject($messageObj->getVar('subject'));
 				$xoopsMailer->setBody($messageObj->getVar('compiled_message'));
-				$this->addLog('sending message ' . $messageObj->getVar('subject') . ' ' . 'to ' . $toUser->getVar('email'));
+
 			} elseif($ecardid) {
 				$ecardObj =& $ecardsObj[$ecardid];
 				$toEmail = $recipientObj->getVar('email_address');

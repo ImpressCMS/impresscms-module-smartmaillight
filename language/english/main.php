@@ -45,4 +45,9 @@ define("_MD_SMLIGHT_ECARD_SENT", "Your ecard has been added to our email queue a
 define("_MD_SMLIGHT_MODIFY_ECARD", "Edit my eCard information");
 
 define("_MD_SMLIGHT_ECARD", "eCards");
+
+define("_MD_SMLIGHT_SUBSCRIBE", "Subscribe");
+define("_MD_SMLIGHT_UPDATE", "Update");
+define("_MD_SMLIGHT_VIEW", "View");
+define("_MD_SMLIGHT_MAIL_ERR", "Please enter email address.");
 ?>

@@ -117,5 +117,6 @@ define("_CO_SMLIGHT_USER_LISTID", "Mailing list");
 define("_CO_SMLIGHT_USER_LISTID_DSC", "");
 define("_CO_SMLIGHT_USER_ACTIVE", "Active");
 define("_CO_SMLIGHT_USER_ACTIVE_DSC", "");
-
+define("_CO_SMLIGHT_USER_EMAIL", "Email");
+define("_CO_SMLIGHT_USER_EMAIL_DSC", "");
 ?>

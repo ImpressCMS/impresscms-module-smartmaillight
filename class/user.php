@@ -37,7 +37,8 @@ class SmartmaillightUser extends SmartObject {
         $this->quickInitVar('userid', XOBJ_DTYPE_INT, true);
         $this->quickInitVar('uid', XOBJ_DTYPE_INT, false, _CO_SMLIGHT_USER_UID, _CO_SMLIGHT_USER_UID_DSC);
         $this->quickInitVar('listid', XOBJ_DTYPE_INT, false, _CO_SMLIGHT_USER_LISTID, _CO_SMLIGHT_USER_LISTID_DSC);
-        $this->quickInitVar('active', XOBJ_DTYPE_INT, false, _CO_SMLIGHT_USER_ACTIVE, _CO_SMLIGHT_USER_ACTIVE_DSC, true);
+        $this->quickInitVar('email', XOBJ_DTYPE_TXTBOX, false, _CO_SMLIGHT_USER_EMAIL, _CO_SMLIGHT_USER_EMAIL_DSC);
+       	$this->quickInitVar('active', XOBJ_DTYPE_INT, false, _CO_SMLIGHT_USER_ACTIVE, _CO_SMLIGHT_USER_ACTIVE_DSC, true);
 
 		$this->setControl('uid', 'user');
 		$this->setControl('listid', array('itemHandler' => 'list',
@@ -74,11 +75,16 @@ class SmartmaillightUserHandler extends SmartPersistableObjectHandler {
         $this->SmartPersistableObjectHandler($db, 'user', 'userid', 'uid', 'listid', 'smartmaillight');
     }
 
-    function addUserToList($uid, $listid, $is_subscribed=true) {
-    	$userObj = $this->getUserForListId($uid, $listid);
+    function addUserToList($uid, $listid, $is_subscribed=true, $email='') {
+    	if($uid){
+    		$userObj = $this->getUserForListId($uid, $listid);
+    	}else{
+    		$userObj = $this->getUserForListIdEmail($email, $listid);
+    	}
     	$userObj->setVar('uid', $uid);
     	$userObj->setVar('listid', $listid);
     	$userObj->setVar('active', $is_subscribed);
+    	$userObj->setVar('email', $email);
     	return $this->insert($userObj);
     }
 
@@ -102,11 +108,38 @@ class SmartmaillightUserHandler extends SmartPersistableObjectHandler {
     	return $ret;
     }
 
+     function getListidsForEmail($email) {
+    	$criteria = new CriteriaCompo();
+    	$criteria->add(new Criteria('email', $email));
+    	$criteria->add(new Criteria('active', true));
+    	$usersObj = $this->getObjects($criteria);
+    	$ret = array();
+    	foreach($usersObj as $userObj) {
+    		$listid = $userObj->getVar('listid', 'e');
+    		$ret[$listid] = $listid;
+    	}
+    	return $ret;
+    }
+
     function getUsersForList($listid) {
     	$criteria = new CriteriaCompo();
     	$criteria->add(new Criteria('listid', $listid));
     	$criteria->add(new Criteria('active', true));
     	return $this->getObjects($criteria);
+    }
+
+
+
+	function getUserForListIdEmail($email, $listid) {
+    	$criteria = new CriteriaCompo();
+    	$criteria->add(new Criteria('email', $email));
+    	$criteria->add(new Criteria('listid', $listid));
+    	$ret = $this->getObjects($criteria);
+    	if (count($ret) == 0) {
+    		return $this->create();
+    	} else {
+    		return $ret[0];
+    	}
     }
 
     function getUserForListId($uid, $listid) {
