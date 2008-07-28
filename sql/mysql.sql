@@ -7,7 +7,7 @@ CREATE TABLE `smartmaillight_list` (
   `from_email` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`listid`)
 ) TYPE=MyISAM COMMENT='SmartMailLight by The SmartFactory <www.smartfactory.ca>' AUTO_INCREMENT=1 ;
-,
+
 CREATE TABLE `smartmaillight_template` (
     `templateid` int(11) NOT NULL auto_increment,
   `name` varchar(255) NOT NULL default '',
