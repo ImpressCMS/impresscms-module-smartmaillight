@@ -41,7 +41,7 @@ $modversion['people']['developers'][] = "[url=http://smartfactory.ca/userinfo.ph
 
 //$modversion['people']['other'][] = "other 1";
 
-$modversion['warning'] = _CO_SOBJECT_WARNING_BETA;
+$modversion['warning'] = '_CO_SOBJECT_WARNING_BETA';
 
 $modversion['author_word'] = "";
 
@@ -142,8 +142,8 @@ $i = 0;
 //common prefs for all module uses
 
 $modversion['config'][$i]['name'] = 'default_editor';
-$modversion['config'][$i]['title'] = '_CO_SOBJECT_EDITOR';
-$modversion['config'][$i]['description'] = '_CO_SOBJECT_EDITOR_DSC';
+$modversion['config'][$i]['title'] = '_MI_SOBJECT_EDITOR';
+$modversion['config'][$i]['description'] = '_MI_SOBJECT_EDITOR_DSC';
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'text';
 include_once(XOOPS_ROOT_PATH . '/modules/smartobject/include/functions.php');
