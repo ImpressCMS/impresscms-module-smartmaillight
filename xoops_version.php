@@ -69,6 +69,8 @@ $modversion['search']['func'] = "smartmaillight_search";
 // Menu
 $modversion['hasMain'] = 1;
 
+global $xoopsModuleConfig;
+
 if ($xoopsModuleConfig['enable_ecard']) {
 	$modversion['sub'][1]['name'] = _MI_SMLIGHT_ECARDS;
 	$modversion['sub'][1]['url'] = "sendecard.php";
