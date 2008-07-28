@@ -33,8 +33,8 @@ define("_MI_SMLIGHT_DEFDOHTMLDSC", "");
 
 define("_MI_SMLIGHT_ARCHIVE", "Archive");
 
-define("_CO_SOBJECT_EDITOR", "Text editor");
-define("_CO_SOBJECT_EDITOR_DSC", "Select the text editor that will be used within this module.");
+define("_MI_SOBJECT_EDITOR", "Text editor");
+define("_MI_SOBJECT_EDITOR_DSC", "Select the text editor that will be used within this module.");
 define("_MI_SMLIGHT_ECARD", "Enable eCards feature");
 define("_MI_SMLIGHT_ECARDDSC", "Enable eCards feature");
 

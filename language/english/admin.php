@@ -16,9 +16,9 @@ if (!defined("XOOPS_ROOT_PATH")) {
 
 
 define("_AM_SMLIGHT_INDEX", "Index");
-define("_AM_SMLIGHT_LISTS", "Mailing Lists");
-define("_AM_SMLIGHT_MESSAGES", "Messages");
-define("_AM_SMLIGHT_RECIPIENTS", "Recipients");
+//define("_AM_SMLIGHT_LISTS", "Mailing Lists");
+//define("_AM_SMLIGHT_MESSAGES", "Messages");
+//define("_AM_SMLIGHT_RECIPIENTS", "Recipients");
 
 // Messages
 
