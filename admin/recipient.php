@@ -101,7 +101,7 @@ switch ($op) {
 		include_once SMARTOBJECT_ROOT_PATH."class/smartobjecttable.php";
 
 		if ($xoopsModuleConfig['enable_ecard']) {
-			$criteruia = null;
+			$criteria = null;
 		} else {
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria('ecardid', 0));
